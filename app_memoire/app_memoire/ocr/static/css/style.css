@@ -1,0 +1,205 @@
+
+@font-face {
+    font-family: 'montserratbold';
+    src: url('../fonts/montserrat-bold-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'montserratlight';
+    src: url('../fonts/montserrat-light-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'montserratregular';
+    src: url('../fonts/montserrat-regular-webfont.woff2') format('woff2'),
+         url('../fonts/montserrat-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body{
+    background-color: #ddd;
+}
+body *{
+    font-family: "montserratregular";
+    font-size: 32px;
+}
+header{
+    width: 100vw;
+    height: 120px;
+    background-color: #fff;
+}
+.container{
+    width: 90vw;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 1em; 
+    margin: 2em auto;
+    min-height: 80vh;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+}
+h1, h2, h3{
+    text-transform: uppercase;
+    text-align: center;
+    margin: 1.5em 0 0;
+}
+h1{
+    font-size: 2em;
+}
+
+h2{
+    font-size: 1.6em;
+}
+h3{
+    font-size: 1em;
+}
+
+form p{
+    display: block;
+    width: 100%;
+}
+
+p{
+    text-align: center;
+    margin: 0 0 1em 0;
+    font-size: 1.2em;
+}
+p.date{
+    margin: 0;
+}
+
+p.biography{
+    margin-bottom: 0.2em;
+}
+p.biography:first-letter{
+    text-transform: capitalize;
+}
+a.link{
+    text-align: center;
+    margin: 15px auto;
+    width: fit-content;
+    display: flex;
+    text-decoration: none;
+    background-color: darkcyan;
+    color: #fff;
+    padding: 0.5em 1em;
+    border-radius: 50px;
+    align-items: center;
+}
+a.link::before{
+    width: 2em;
+    height: 2em;
+    display:block;
+    float:left;
+    margin-right: 10px;
+}
+.wiki::before{
+    content:url("../img/wiki-search.svg");
+}
+.search::before{
+    content:url("../img/pp-search.svg");
+}
+.reccord::before{
+    content:url("../img/pp-rcd.svg");
+}
+input[type="file"] {
+    display: none;
+}
+.select-result,
+label:not([for="text_search"]),
+.container input[type="submit"]{
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding: 0.5em 1em;
+    font-size: 1.1em;
+    font-family: "montserratregular";
+    background-color: darkcyan;
+    color: #fff;
+    border-radius: 24px;
+    border: none;
+    display: block;  
+    transition: all 0.2s;
+
+}
+.select-result,
+label:not([for="text_search"]):hover,
+.container input[type="submit"]:hover{
+    background-color: darkslategrey;
+    transition: all 0.2s;
+
+}
+.select-result{
+    margin: 10px 0;
+}
+
+.check::after{
+    content:url("../check.svg");
+    width: 1.5em;
+    height: 1.5em;
+    display: block;
+    margin: 0.5em auto 0;
+}
+img{
+    display: block;
+    width: 90%;
+    margin: 1em auto;
+    border-radius: 16px;
+}
+#text_search{
+    width: 100%;
+    margin: 1em auto;
+    padding: 10px 0;
+    border-radius: 16px;
+}
+.ocr-results form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+label[for="text_search"]{
+    width:100%
+}
+details{
+    background-color: #f2f2f2;
+    padding: 1em;
+    border-radius: 16px;
+    margin: 0.5em 0;
+}
+summary::marker{
+    display: none;
+    content:"";
+}
+summary h4{
+    width: fit-content;
+    margin: 0
+}
+.artwork_list{
+    margin-top: 0.5em;
+}
+.artwork_list p{
+    font-size: 0.8em;
+    font-style: normal;
+    text-align: left;
+    margin: 0 0 0.2em 0;
+}
+.artwork_list p b{
+    font-size: 0.8em;
+}

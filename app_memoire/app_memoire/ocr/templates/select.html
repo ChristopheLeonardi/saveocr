@@ -1,0 +1,25 @@
+{% extends 'image_form.html' %}
+{% block replace %}
+
+<div>
+  <img src="{{ user_pr.image.url }}" class="image_responsive">
+  <section class="ocr-results">
+    <h2>Mots détectés</h2>
+    <p>Sélectionner le terme à rechercher : </p>
+    <form action="/ocr/results/" method="post">{% csrf_token %}
+        {% for word in keyword %}
+        <button class="select-result" title="{{word}}" data-term="{{word}}">{{word}}</button>
+        {% empty %}
+        <li>La recherche n'a donné aucun résultat</li>
+        {% endfor %}
+
+        <label for="text_search">Ou effectuer une recherche textuelle : </label>
+        <input id="text_search" type="text" name="text_search">
+        <input type="submit" value="Rechercher">
+    </form>
+    <ul>
+
+    </ul>
+  </section>
+</div>
+{% endblock %}

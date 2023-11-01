@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Upload Image</title>
+        <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}"/>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+        <script src="{% static '/js/script.js' %}"></script>
+        <script src="{% static '/js/load-image/load-image.all.min.js' %}"></script>
+
+    </head>
+    <body>
+        <header>
+            <div><h1>Application OCR</h1></div>
+        </header>
+           <div class="container">
+                <h2 class="display-4">Recherche par image</h2>
+                        {% block replace %}
+                        <p>Cette application permet d'effectuer des recherches sur les affiches et jaquettes de CD à l'aide de technologies OCR. Pour commencer, cliquez sur le bouton Uploadez l'image à rechercher.</p>
+                <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                    <!-- Very Important csrf Token -->
+                    {% csrf_token %}
+                    <table>
+                        {{ form.as_p }}
+                    </table>
+                    <input type="submit" class="btn btn-primary btn-lg" name="upload_image">
+                </form>
+            </div>
+
+        {% endblock %}
+    </body>
+</html> 

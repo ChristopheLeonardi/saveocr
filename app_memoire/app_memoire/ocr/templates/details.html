@@ -1,0 +1,77 @@
+{% extends 'select.html' %}
+{% block replace %}
+
+<div>
+  <section class="query-results">
+    <!-- author_data, wiki_data, music_data -->
+
+    <!-- Author Section -->
+    {% if author_data.author is not None %}
+      {%if wiki_data.picture is not None%}
+        <img src="{{wiki_data.picture}}" alt="protrait de {{author_data.author.author}}"/>
+      {% endif %}
+
+      <h2>{{author_data.author}}</h2>
+      <p class="date">{% firstof author_data.dates_biography wiki_data.dates_biography %}</p>
+      <p class="biography">{% firstof author_data.summary wiki_data.biography %}</p>
+
+      <a class="reccord link" href="https://pad.philharmoniedeparis.fr/search.aspx?SC=MEDIA&QUERY={{author_data.author}}#/Search/(query:(FacetFilter:'%7B%22_233%22:%22Concert%20(partie)%22%7D',ForceSearch:!t,Page:0,PageRange:3,QueryString:'{{author_data.author}}',ResultSize:15,ScenarioCode:MEDIA,ScenarioDisplayMode:display-standard,SearchLabel:'',SearchTerms:'{{author_data.author}}',SortField:DateOfPublication_sort,SortOrder:0,TemplateParams:(Scenario:'',Scope:MEDIA,Size:!n,Source:'',Support:'')))
+      " target="_blank">Enregistrements Disponibles</a>
+
+      <a class="search link" href="https://pad.philharmoniedeparis.fr/search.aspx?SC=MEDIA&QUERY={{author_data.author}}#/Search/(query:(CloudTerms:!(),FacetFilter:'%7B%22_724%22:%22Portrait%22%7D',ForceSearch:!t,Page:0,PageRange:3,QueryString:'{{author_data.author}}',ResultSize:15,ScenarioCode:MEDIA,ScenarioDisplayMode:display-standard,SearchLabel:'',SearchTerms:'{{author_data.author}}',SortField:DateOfPublication_sort,SortOrder:0,TemplateParams:(Scenario:'',Scope:MEDIA,Size:!n,Source:'',Support:'')))
+      " target="_blank">Philharmonie à la demande</a>
+
+      {%if wiki_data.wiki_link is not None%}
+        <a class="wiki link" href="{{wiki_data.wiki_link}}" target="_blank">Lien vers la page Wikipedia</a>
+      {% endif %}
+
+      <!-- Music list section -->
+      {% if music_data.0.name %}
+        <h3>Oeuvres Réalisées</h3>
+
+        {% for artwork in music_data %}
+          <details>
+            <summary>
+                <h4>{{ artwork.name }}</h4>
+            </summary>
+            <article class="artwork_list">
+              {%if artwork.music_artwork_link is not None%}
+                <a href="{{artwork.music_artwork_link}}">Lien d'écoute</a>
+              {%endif%}
+      
+              {%if artwork.category is not None %}
+                <p><b>Catégorie :</b> {{artwork.category}}</p>
+              {%endif%}
+      
+              {%if artwork.date_composition is not None%}
+                <p><b>Date de composition :</b> {{artwork.date_composition}}</p>
+              {%endif%}
+      
+              {%if artwork.duration is not None%}
+                <p><b>Durée moyenne :</b> {{artwork.duration}}</p>
+              {%endif%}
+      
+              {%if artwork.intrumentation is not None%}
+                <p><b>Instrumentation :</b> {{artwork.intrumentation}}</p>
+              {%endif%}
+      
+              {%if artwork.first_execution is not None%}
+                <p><b>Date de première exécution :</b> {{artwork.first_execution}}</p>
+              {%endif%}
+            
+              {%if artwork.informations is not None%}
+                <p><b>Informations :</b> {{artwork.informations}}</p>
+              {%endif%}
+              {%if artwork.summary is not None%}
+                <p>{{artwork.summary}}</p>
+              {%endif%}
+            </article>
+          </details>
+        {% endfor %}
+      {% endif %}
+    {% else %}
+      <h2>Votre recherche n'a donné aucun résultat</h2>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

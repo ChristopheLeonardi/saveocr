@@ -1,0 +1,80 @@
+{% extends 'select.html' %}
+{% block replace %}
+<div>
+  <section class="query-results">
+    {{query_results}}
+    {% if query_results.0.0.author is not None %}
+      {%if results.1.0.picture is not None%}
+      <img src="{{query_results.1.0.0.picture}}" alt="protrait de {{query_results.0.0.author}}"/>
+      {% endif %}
+      {%if query_results.0.0.author is not None%}
+      <h2>{{query_results.0.0.author}}</h2>
+      {% endif %}
+      {%if query_results.0.0.dates_biography is not None%}
+      <p>{{query_results.0.0.dates_biography}}</p>
+      {% endif %}
+      {%if query_results.1.0.biography is not None%}
+      <p>{{query_results.1.0.biography}}</p>
+      {% endif %}
+      {%if query_results.1.0.wiki_link is not None%}
+      <a href="{{query_results.1.0.wiki_link}}">Lien vers la page Wikipedia</a>
+      {% endif %}
+    {% else %}
+      <h2>Votre recherche n'a donné aucun résultat</h2>
+    {% endif %}
+    {% if query_results.2.0.artwork.name %}
+    <h3>Oeuvres Réalisées</h3>
+    {% for artwork in query_results.2 %}
+    <details>
+      <summary>
+        {%if artwork.name is not None%}
+          <h4>{{artwork.name}}</h4>
+        {% else %}
+          <h4>Titre inconnu</h4>
+        {%endif%}
+      </summary>
+      <article>
+        {%if artwork.music_artwork_link is not None%}
+        <h5>Lien</h5>
+        <p>{{artwork.music_artwork_link}}</p>
+        {%endif%}
+
+        {%if artwork.category is not None %}
+        <h5>Catégorie</h5>
+        <p>{{artwork.category}}</p>
+        {%endif%}
+
+        {%if artwork.date_composition is not None%}
+        <h5>Date de composition</h5>
+        <p>{{artwork.date_composition}}</p>
+        {%endif%}
+
+        {%if artwork.duration is not None%}
+        <h5>Durée moyenne</h5>
+        <p>{{artwork.duration}}</p>
+        {%endif%}
+
+        {%if artwork.intrumentation is not None%}
+        <h5>Instrumentation</h5>
+        <p>{{artwork.intrumentation}}</p>
+        {%endif%}
+
+        {%if artwork.first_execution is not None%}
+        <h5>Date de première exécution</h5>
+        <p>{{artwork.first_execution}}</p>
+        {%endif%}
+      
+        {%if artwork.informations is not None%}
+        <h5>Informations</h5>
+        <p>{{artwork.informations}}</p>
+        {%endif%}
+        {%if artwork.summary is not None%}
+        <p>{{artwork.summary}}</p>
+        {%endif%}
+      </article>
+    </details>
+    {% endfor %}
+    {% endif %}
+  </section>
+</div>
+{% endblock %}
